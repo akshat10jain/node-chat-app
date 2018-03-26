@@ -10,11 +10,21 @@ var socket=   io();
  socket.on('newMessage',function(data) {
 
     var formattedTime=moment(data.createdAt).format('h:mm a');
-    // console.log(data);
-     var li=jQuery('<li></li>');
-     li.text(`${data.from} ${formattedTime} : ${data.text}`);
+    var template=jQuery('#message-template').html();
+    var html=Mustache.render(template,{
+        text:data.text,
+        from:data.from,
+        createdAt:formattedTime
+    });
 
-     jQuery('#messages').append(li);
+    jQuery('#messages').append(html);
+
+    // var formattedTime=moment(data.createdAt).format('h:mm a');
+
+    //  var li=jQuery('<li></li>');
+    //  li.text(`${data.from} ${formattedTime} : ${data.text}`);
+
+    //  jQuery('#messages').append(li);
  })
 
 
