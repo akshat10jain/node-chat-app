@@ -18,13 +18,15 @@ var socket=   io();
  })
 
 
- //acknowledge sent from server to client
+//acknowledge sent from server to client
 //  socket.emit('createMessage', {
 //     from:'froank',
 //     text:'hi'
 // },function(data) {
 //     console.log('got it',data);
 // });
+
+
 
 jQuery('#message-form').on('submit',function(e){
 e.preventDefault();
