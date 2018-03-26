@@ -8,9 +8,11 @@ var socket=   io();
  })
 
  socket.on('newMessage',function(data) {
-     console.log(data);
+
+    var formattedTime=moment(data.createdAt).format('h:mm a');
+    // console.log(data);
      var li=jQuery('<li></li>');
-     li.text(`${data.from}: ${data.text}`);
+     li.text(`${data.from} ${formattedTime} : ${data.text}`);
 
      jQuery('#messages').append(li);
  })
@@ -30,6 +32,18 @@ socket.emit('createMessage',{
     from:'User',
     text:jQuery('[name=message]').val()
 },function(){
-
+     jQuery('[name=message]').val('')
 })
 })
+// var location=jQuery('#send-location');
+// locationButton.on('click',function(){
+//     if(!navigator.geolocation){
+//          return  alert('geolocation not supported by your browser');
+//     }
+    
+//     navigator.geolocation.getCurrentPosition(function(position){
+//            console.log(position);
+//     },function(){
+//         alert('Unable to fetch location');
+//     })
+// })

@@ -29,7 +29,7 @@ socket.on('createMessage',(message,callback)=>{
 
   // every body see the message including me
   io.emit('newMessage',generateMessage(message.from,message.text))
-  callback('this is frm the server');
+  callback();
 
 // we will not see the message we send but every body else
 
