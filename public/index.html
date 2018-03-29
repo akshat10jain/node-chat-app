@@ -4,34 +4,93 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Join | ChatApp</title>
+    <title>Chat | ChatApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no ">
     <link rel="stylesheet" type="text/css" media="screen" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <script src="main.js"></script> -->
+
 </head>
 
-<body class="centered-form">
-    <div class="centered-form__form">
-        <form action="/chat.html">
+<body class="chat">
 
-            <div class="form-field">
-                <h3>Join a Chat</h3>
-            </div>
-            <div class="form-field">
-                <label>Display name</label>
-                <input type="text" name="name" autofocus />
-            </div>
-            <div class="form-field">
-                    <label>Room name</label>
-                    <input type="text" name="room"  />
-            </div>
-            <div class="form-field">
-                <button>Join</button>
-            </div>
+    <div class="chat__sidebar">
 
-        </form>
+        <h3>People</h3>
+        <div id="users"></div>
     </div>
 
+    <div class="chat__main">
+        <div class="chat-header clearfix">
+            <img class="Img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
+
+            <div class="chat-about">
+                    
+            
+                <div class="chat-with">
+                    <h3>Chat with XYZ
+                    </h3>
+                    
+                    
+ 
+                </div>
+                <!-- <i class="fa fa-star"></i> -->
+                <!-- <div class="chat-num-messages">already 1 902 messages</div> -->
+            </div>
+            <i class="fa fa-star"></i>
+            <div class="search">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="ip-search" placeholder="search" />
+                    <!-- <i class="fa fa-search"></i> -->
+                    
+                  </div>
+        </div>
+
+        <ol id="messages" class="chat__messages "></ol>
+
+        <div class="chat__footer">
+            <form id="message-form">
+                <input name="message" type="text" placeholder="Message" autofocus autocomplete="off" />
+                <button>Send</button>
+
+            </form>
+
+            <button id="send-location">Upload</button>
+        </div>
+
+    </div>
+
+
+
+    <script id="message-template" type="text/template">
+   <li class="message">
+   <div class="message__title">
+       <h4>{{from}} </h4>
+       <span  >{{createdAt}}</span>
+   </div>
+   
+   <div class="message__body">
+       <p>{{text}}</p>
+       <!-- <span  >{{createdAt}}</span> -->
+   </div>
+  
+</li>
+    
+
+</script>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="/js/libs/moment.js"></script>
+    <script src="/js/libs/mustache.js"></script>
+    <script src="/js/libs/deparam.js"></script>
+    <script src="/js/index.js"></script>
 
 </body>
 
 </html>
+
+
+<!-- https://gist.github.com/andrewjmead/4783dec59ba2d1e5bcf3e1c301c5858d -->
