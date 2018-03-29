@@ -27,20 +27,28 @@ socket.on('disconnect', function () {
     console.log('disconneced from server');
 })
 
+socket.on('load old messages', function(docs){
+   
+    for(var i =0;i<docs.length;i++){
+        displayMsg(docs[i]);
+    }
+})
+
 socket.on('newMessage', function (data) {
 
-    console.log('disconneced from server');
+    console.log('newmessages arrived');
     
-    var formattedTime = moment(data.createdAt).format('h:mm a');
-    var template = jQuery('#message-template').html();
-    var html = Mustache.render(template, {
-        text: data.text,
-        from: data.from,
-        createdAt: formattedTime
-    });
+    displayMsg(data);
+    // var formattedTime = moment(data.createdAt).format('h:mm a');
+    // var template = jQuery('#message-template').html();
+    // var html = Mustache.render(template, {
+    //     text: data.text,
+    //     from: data.from,
+    //     createdAt: formattedTime
+    // });
 
-    jQuery('#messages').append(html);
-    scrollToBottom();
+    // jQuery('#messages').append(html);
+    // scrollToBottom();
 
     // var formattedTime=moment(data.createdAt).format('h:mm a');
 
@@ -51,6 +59,19 @@ socket.on('newMessage', function (data) {
 })
 
 
+function  displayMsg(data){
+    var formattedTime = moment(data.createdAt).format('h:mm a');
+    var template = jQuery('#message-template').html();
+    var html = Mustache.render(template, {
+        text: data.text,
+        from: data.from,
+        createdAt: formattedTime
+    });
+
+    jQuery('#messages').append(html);
+    scrollToBottom();
+}
+
 //acknowledge sent from server to client
 //  socket.emit('createMessage', {
 //     from:'froank',
@@ -58,6 +79,7 @@ socket.on('newMessage', function (data) {
 // },function(data) {
 //     console.log('got it',data);
 // });
+
 
 
 
